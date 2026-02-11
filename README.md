@@ -70,6 +70,22 @@ All technical and architectural decisions are discussed openly.
 
 ---
 
+# Project Documentation
+
+All technical and design documentation for this project is centralized in the `docs/` folder.
+
+You can start exploring the documentation here:
+
+- [Go to Docs](./docs/README.md)
+
+This will give you access to:
+
+- API specifications
+- Architecture overviews
+- Protocol details
+
+---
+
 ## License
 
 Clef is licensed under the **GNU Affero General Public License v3 (AGPLv3)**.
