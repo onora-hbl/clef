@@ -55,6 +55,21 @@ These documents define what Clef *must* be — and what it must never become.
 
 ---
 
+## Discussions
+
+Don’t hesitate to jump into the **[Discussions](https://github.com/onora-hbl/clef/discussions/categories/general-discussions)** tab to talk about the project.
+
+Any topic is welcome:
+- questions about the protocol or cryptographic model  
+- design ideas or alternative approaches  
+- doubts, critiques, or “what if?” scenarios  
+- early thoughts that aren’t ready to become issues or PRs yet  
+
+This is a **benevolent, open space** meant for exploration and collective thinking.  
+There are no bad questions — if something is unclear, it’s worth discussing.
+
+---
+
 ## Contributing
 
 Clef is fully open-source and community-driven.
