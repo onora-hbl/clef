@@ -12,4 +12,5 @@ It covers:
 
 Key files:
 
+- [Channels, Access & Messages](channels-access-messages.md)
 - [Client and devices management](client-and-devices-management.md)
