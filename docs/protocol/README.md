@@ -12,5 +12,6 @@ It covers:
 
 Key files:
 
+- [MLS Protocol](mls-protocol.md)
 - [Channels, Access & Messages](channels-access-messages.md)
 - [Client and devices management](client-and-devices-management.md)
