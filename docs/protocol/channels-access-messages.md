@@ -93,17 +93,17 @@ This allows:
 
 ## 4. Epochs (Why They Exist)
 
-An **epoch** represents a *version* of the channel membership.
+An epoch represents an exact version of channel membership.
 
-A new epoch is created when:
+A new epoch is created whenever:
+- a user is added
 - a user is removed
+- a device is added
 - a device is revoked
 
 Each epoch has:
-- a new root key
-- new blobs for authorized devices
-
-Old epochs remain stored but inaccessible without keys.
+- its own root key
+- its own set of authorized devices
 
 ---
 
@@ -143,36 +143,40 @@ Allow a device to read past and future messages it is authorized for.
 
 ### History Access Rule
 
-> Access to history is equivalent to possession of the epoch keys.
+Access to messages is strictly bound to **epoch authorization**.
 
-This means:
-- Joining a channel later still allows full history access
-- As long as blobs for past epochs are provided
+Joining a channel grants access only to:
+- the newly created epoch
+- any previous epochs explicitly authorized
 
 ---
 
 ## 7. Adding a User to a Channel
 
 ### Purpose
-Grant access to future and past messages.
+Grant access to future messages, and optionally to selected history.
 
 ### Flow
 
-1. Existing member initiates addition.
-2. New blobs are generated for:
-   - all devices of the new user
-3. Instance distributes blobs.
+1. An authorized member initiates the addition.
+2. A **new epoch is created**.
+3. The key tree is updated to include the new member.
+4. A new root key is derived.
+5. New blobs are generated for all authorized devices.
+6. The instance distributes blobs for the new epoch.
 
-### Result
+### History Access
 
-- New user can:
-  - derive the new root key
-  - read all messages (past + future)
-- Existing users are unaffected (same keys, same access)
+- Access to past epochs is **explicitly granted**
+- Historical blobs are shared selectively
+- History access is not implicit
 
 ---
 
 ## 8. Removing a User from a Channel
+
+This process is identical in structure to adding a user,
+but excludes the removed member from the new epoch.
 
 ### Purpose
 Permanently revoke access.

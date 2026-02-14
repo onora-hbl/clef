@@ -4,14 +4,6 @@ This document explains **Messaging Layer Security (MLS)** as used in this projec
 It focuses on **concepts, data structures, and flows**, not on cryptographic algorithms.
 The goal is to make MLS *mentally visualizable* and concrete.
 
-⚠️ **Important adaptation note**  
-In *this system*, **joining a user does NOT trigger a new epoch**.  
-A joining user is allowed to read:
-- the **current epoch**
-- all **previous epochs** they are authorized for
-
-Epoch rotation is only required for **revocation**, not for joins.
-
 ---
 
 ## 1. What MLS Is (High-Level)
@@ -79,12 +71,15 @@ An epoch defines:
 - which keys are valid
 - which tree structure is active
 
-Epoch changes occur when:
-- ❌ a member is removed
-- ❌ a device is revoked
+In Clef, **any change to group membership triggers a new epoch**.
 
-Epoch does **not** change when:
-- ✅ a user joins (in this system)
+This includes:
+- adding a user
+- removing a user
+- adding a device
+- revoking a device
+
+An epoch therefore represents an **exact snapshot of authorized membership**.
 
 ---
 
@@ -171,32 +166,30 @@ Each blob is shared by:
 
 ---
 
-## 5. Adding a User (No Epoch Change)
+## 5. Adding a User (Epoch Change Required)
 
 ### 5.1 What Happens Conceptually
 
-- A new **leaf** is added to the tree
-- Tree structure changes
-- **Root Key stays the same**
-- New user receives:
-  - blobs needed to reach the current root
-  - blobs for historical epochs (if allowed)
+- A new leaf is added to the tree
+- A **new epoch is created**
+- A **new Root Key is derived**
+- New blobs are generated **only for authorized devices**
+
+The newly added user receives:
+- blobs for the new epoch
+- blobs for previous epochs **only if explicitly authorized**
 
 They can now derive:
 - past root keys
 - current root key
 - future keys until revoked
 
-### 5.2 Why This Is Safe (In This Model)
-
-Because:
-- joins are trusted
-- historical access is intentional
-- no secrecy is lost by keeping the same root
-
 ---
 
 ## 6. Removing a User (Epoch Change Required)
+
+Removing a user follows the same epoch rotation mechanism as adding one,
+but with a different authorization outcome.
 
 ### 6.1 What Must Change
 

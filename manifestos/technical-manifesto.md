@@ -133,15 +133,10 @@ History is:
 - indexed structurally (timestamps, channel IDs)
 - inaccessible without proper authorization
 
-When a user gains access to a channel:
+History access is a cryptographic capability,
+but granting it is a **deliberate authorization decision**.
 
-- the instance allows retrieval of the encrypted history
-- the client decrypts locally if it has the required material
-
-If access is revoked:
-
-- the instance stops delivering new data
-- cryptographic rotation prevents future access
+Joining a channel does not implicitly grant access to prior epochs.
 
 ---
 

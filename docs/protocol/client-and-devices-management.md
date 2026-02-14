@@ -144,11 +144,6 @@ Allow a new device to recover **all user state**, across **all instances**, tran
 
 > The new device becomes indistinguishable from existing ones.
 
-No instance needs to:
-- know about other instances
-- understand user topology
-- coordinate data recovery
-
 ---
 
 ## 5. Device vs Identity Key — Practical Example
