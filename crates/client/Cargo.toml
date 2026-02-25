@@ -4,3 +4,6 @@ version = "0.0.1"
 edition = "2024"
 
 [dependencies]
+clef_client_core = { path = "../client_core" }
+dirs = "6.0.0"
+eframe = "0.33.3"
